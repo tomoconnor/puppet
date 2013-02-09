@@ -1,0 +1,14 @@
+auto lo
+iface lo inet loopback
+
+auto <%= iface_name %>
+iface <%= iface_name -%> inet static
+	address <%= iface_ipaddress %>
+	netmask <%= iface_netmask %>
+	network <%= iface_network %>
+	broadcast <%= iface_broadcast %>
+	gateway <%= iface_gateway %>
+	<% if @iface_hw %>
+	hwaddress ether <%= iface_hw %>
+	<% end %>
+

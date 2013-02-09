@@ -1,0 +1,19 @@
+allow-recursion=0.0.0.0/0
+allow-recursion-override=on #this mysterious setting allows non-recursive lookups on london.bb.com
+daemon=yes
+default-ttl=1800
+launch=gpgsql
+gpgsql-dbname=<%= psql_pdns_db %>
+gpgsql-host=<%= psql_host %>
+gpgsql-port=<%= psql_port %>
+gpgsql-password=<%= psql_password %>
+gpgsql-user=<%= psql_user %>
+local-address=<%= ipaddress %>
+local-port=53
+master=yes
+out-of-zone-additional-processing=yes
+recursor=8.8.8.8
+webserver=yes
+webserver-address=<%= ipaddress %>
+webserver-port=8888
+

@@ -1,0 +1,4 @@
+module: DavidSchmitt/munin
+version: 1.0.0
+url: file:///home/tom.oconnor/.puppet/var/puppet-module/cache/http_forge_puppetlabs_com-75a31f1d6f1ef6eb63b4479b3512ee1508209a7f/DavidSchmitt-munin-1.0.0.tar.gz
+installed: Mon Nov 28 18:41:57 +0000 2011

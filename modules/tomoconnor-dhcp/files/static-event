@@ -1,0 +1,74 @@
+#!/usr/bin/python -u
+# This is a simple xinetd servlet to update powerdns with static host "leases"
+
+import sys
+import psycopg2
+import os
+import pprint
+import time
+import logging
+from IPy import IP
+
+
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s', datefmt='%m-%d %H:%M', filename='/var/log/static-event.log')
+
+def getReverseName(ipAddress):
+	return IP(ipAddress).reverseName().rstrip('.')
+#        return '.'.join(IP(ipAddress).reverseName().split('.')[2:]).rstrip('.')
+
+domain_id = 23
+ptr_domain_id = 22
+
+pp = pprint.PrettyPrinter()
+pg_host = "localhost"
+pg_user = "powerdns"
+pg_db = "powerdns"
+pg_pass = "igotthep0wer"
+
+default_domain = 'london.tomoconnor.eu'
+
+
+db =  psycopg2.connect(database=pg_db, user=pg_user, password = pg_pass, host=pg_host)
+
+_input = sys.stdin.readline().split()
+if len(_input) == 4:
+	hostname = _input[0]
+	if 'london' not in hostname:
+		hostname += "." + default_domain
+	ipaddress = _input[1]
+	macaddress = _input[2]
+	domain = _input[3] 
+
+	logging.debug("Data In: " + ', '.join(_input) )
+
+logging.info("\nUpdating Static IP DNS for %s : %s (%s)" % (ipaddress,hostname,macaddress))
+
+cursor = db.cursor()
+cursor.execute("SELECT domain_id, name, type, content,change_date FROM records WHERE domain_id = %s AND name = %s", (domain_id, hostname))
+if cursor.rowcount >=1:
+
+    all_rows = cursor.fetchall()
+    for row in all_rows:
+        (del_hostname, del_ipaddress) = (row[1],row[3])
+	    #we want to do a clean update, so we'll delete the matches inside a) the A records and b, the PTRs
+        logging.debug(cursor.mogrify("DELETE FROM records WHERE content = %s AND name = %s",(del_ipaddress,del_hostname)))
+        logging.debug(cursor.mogrify("DELETE FROM records WHERE content = %s AND name = %s",(del_hostname,getReverseName(del_ipaddress))))
+        try:
+            cursor.execute("DELETE FROM records WHERE content = %s AND name = %s",(del_ipaddress,del_hostname))
+            cursor.execute("DELETE FROM records WHERE content = %s AND name = %s",(del_hostname,getReverseName(del_ipaddress)))
+        except:
+            logging.error("FAILED TO DELETE RECORDS")
+
+
+logging.debug(cursor.mogrify("INSERT INTO records (domain_id,name,type,content,ttl,prio,change_date) VALUES (%s,%s,%s,%s,%s,%s,%s)",(domain_id,hostname,"A",ipaddress,3600,0,int(time.time()))))
+logging.debug(cursor.mogrify("INSERT INTO records (domain_id,name,type,content,ttl,prio,change_date) VALUES (%s,%s,%s,%s,%s,%s,%s)",(ptr_domain_id, getReverseName(ipaddress),"PTR",hostname,3600,0,int(time.time()))))
+try:
+	cursor.execute("INSERT INTO records (domain_id,name,type,content,ttl,prio,change_date) VALUES (%s,%s,%s,%s,%s,%s,%s)",(domain_id,hostname,"A",ipaddress,3600,0,int(time.time())))
+	cursor.execute("INSERT INTO records (domain_id,name,type,content,ttl,prio,change_date) VALUES (%s,%s,%s,%s,%s,%s,%s)",(ptr_domain_id, getReverseName(ipaddress),"PTR",hostname,3600,0,int(time.time())))
+except:
+	logging.error("FAILED TO INSERT RECORDS")
+cursor.close()
+db.commit()
+
+print "OK"
+sys.stdout.flush()

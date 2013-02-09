@@ -1,0 +1,5 @@
+Defaults	env_reset
+root	ALL=(ALL) ALL
+bbadmin	ALL=(ALL) ALL
+%sudo	ALL=(ALL) ALL
+%sudoers	ALL=(ALL) ALL

@@ -1,0 +1,21 @@
+auto lo
+iface lo inet loopback
+
+#auto eth0
+#iface eth0 inet dhcp
+
+#auto eth1
+#iface eth1 inet dhcp
+
+auto bond0
+iface bond0 inet static
+	address <%= iface_ipaddress %>
+	netmask <%= iface_netmask %>
+	network <%= iface_network %>
+	broadcast <%= iface_broadcast %>
+	gateway <%= iface_gateway %>
+	post-up ifenslave bond0 eth0 eth1
+	pre-down ifenslave -d bond0 eth0 eth1
+	hwaddress ether <%= macaddress_eth0 %>
+
+

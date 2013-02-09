@@ -1,0 +1,797 @@
+*PPD-Adobe: "4.3"
+*%
+*%   Dell 2155cn Color MFP PPD file for CUPS.
+*%
+*%   Copyright (C) 2010. All rights reserved.
+*%
+*FileVersion: "1.0"
+*FormatVersion: "4.3"
+*LanguageEncoding: ISOLatin1
+*LanguageVersion: English
+*Manufacturer: "Dell"
+*PCFileName: "DL2155CN.PPD"
+*Product: "(Dell 2155cn Color MFP)"
+*PSVersion: "(3015.102) 1"
+*ShortNickName: "Dell 2155cn Color MFP"
+*ModelName: "Dell 2155cn Color MFP"
+*NickName: "Dell 2155cn Color MFP v1.0"
+*cupsVersion: 1.1
+*cupsManualCopies: False
+*cupsFilter: "application/vnd.cups-raster 0 /usr/lib/cups/filter/Dell_2155_Color_MFP/DLM_MF"
+*cupsModelNumber: 0
+*DLFilterDir: "/usr/lib/cups/filter/Dell_2155_Color_MFP"
+*DLFilterChain: "DLM_FXR, DLM_SBP, DLM_PR, DLM_CC, DLM_TP, DLM_EE, DLM_DF, DLM_AL5C, DLM_HBPL"
+*DLDlutFilePath: "/usr/share/cups/Dell/dlut/Dell_2155cdn_Color_MFP.dlut"
+*DLExtensionHB2: True
+*DLDoRGBtoCMYK:
+*DLSupportDeviceCollate: True
+*DLDeviceCollateMemoryThreshold: 768Meg
+*DLM_SBPExecCondition: "$DLSkip True eq"
+*DLM_PRExecCondition: "$DLTurnPage True eq"
+*DLM_TPExecCondition: "$DLTrapping True eq $DLColorMode Color eq and"
+*DLM_EEExecCondition: "$DLEdgeEnhance True eq"
+*DLM_DFExecCondition: "$DLDigitalFilter Off ne"
+
+*% === Options and Constraints =========
+*OpenGroup: InstallableOptions/Options Installed
+
+*% === Paper Tray Configuration =========
+*OpenUI *Option1/Paper Tray Configuration: PickOne
+*DefaultOption1: None
+*Option1 None/Not Available: ""
+*Option1 1Tray/2-Tray Module: ""
+*CloseUI: *Option1
+
+*% === Memory Capacity =========
+*OpenUI *InstalledMemory/Memory Capacity: PickOne
+*DefaultInstalledMemory: 256Meg
+*InstalledMemory 256Meg/256MB: ""
+*InstalledMemory 512Meg/512MB: ""
+*InstalledMemory 768Meg/768MB: ""
+*InstalledMemory 1024Meg/1024MB: ""
+*CloseUI: *InstalledMemory
+
+*CloseGroup: InstallableOptions
+
+*% ==== UIConstraints ===============
+
+*% == Constraints (Option Tray vs. Input Slot) ==
+*UIConstraints: *Option1 None *InputSlot 2ndTray
+
+*UIConstraints: *InputSlot 2ndTray *Option1 None
+
+*% == Constraints (Page Size vs. Input Slot) ==
+*UIConstraints: *InputSlot 2ndTray *PageSize Env10
+*UIConstraints: *InputSlot 2ndTray *PageSize EnvC5
+*UIConstraints: *InputSlot 2ndTray *PageSize EnvMonarch
+*UIConstraints: *InputSlot 2ndTray *PageSize EnvDL
+*% *UIConstraints: *InputSlot2ndTray *PageSize DLEnvMonarchRotated
+*% *UIConstraints: *InputSlot BypassTray *PageSize DLEnvMonarchRotated
+*% *UIConstraints: *InputSlot 2ndTray *PageSize DLEnvDLRotated
+*% *UIConstraints: *InputSlot BypassTray *PageSize DLEnvDLRotated
+
+*UIConstraints: *PageSize Env10 *InputSlot 2ndTray
+*UIConstraints: *PageSize EnvC5 *InputSlot 2ndTray
+*UIConstraints: *PageSize EnvMonarch *InputSlot 2ndTray
+*UIConstraints: *PageSize EnvDL *InputSlot 2ndTray
+*% *UIConstraints: *PageSize DLEnvMonarchRotated *InputSlot 2ndTray
+*% *UIConstraints: *PageSize DLEnvMonarchRotated *InputSlot BypassTray
+*% *UIConstraints: *PageSize DLEnvDLRotated *InputSlot 2ndTray
+*% *UIConstraints: *PageSize DLEnvDLRotated *InputSlot BypassTray
+
+*% == Constraints (Page Region vs. Input Slot) ==
+*UIConstraints: *PageRegion Env10 *InputSlot 2ndTray
+*UIConstraints: *PageRegion EnvMonarch *InputSlot 2ndTray
+*% *UIConstraints: *PageRegion DLEnvMonarchRotated *InputSlot 2ndTray
+*UIConstraints: *PageRegion EnvDL *InputSlot 2ndTray
+*% *UIConstraints: *PageRegion DLEnvDLRotated *InputSlot 2ndTray
+*UIConstraints: *PageRegion EnvC5 *InputSlot 2ndTray
+*% *UIConstraints: *PageRegion DLEnvMonarchRotated *InputSlot BypassTray
+*% *UIConstraints: *PageRegion DLEnvDLRotated *InputSlot BypassTray
+
+*UIConstraints: *InputSlot 2ndTray *PageRegion Env10
+*UIConstraints: *InputSlot 2ndTray *PageRegion EnvMonarch
+*% *UIConstraints: *InputSlot 2ndTray *PageRegion DLEnvMonarchRotated
+*UIConstraints: *InputSlot 2ndTray *PageRegion EnvDL
+*% *UIConstraints: *InputSlot 2ndTray *PageRegion DLEnvDLRotated
+*UIConstraints: *InputSlot 2ndTray *PageRegion EnvC5
+*% *UIConstraints: *InputSlot BypassTray *PageRegion DLEnvMonarchRotated
+*% *UIConstraints: *InputSlot BypassTray *PageRegion DLEnvDLRotated
+
+*% == Constraints (Media Type vs. Page Size) ==
+*UIConstraints: *MediaType Letterhead *PageSize A5
+*UIConstraints: *MediaType PrePrinted *PageSize A5
+*UIConstraints: *MediaType PrePunched *PageSize A5
+*UIConstraints: *MediaType Letterhead *PageSize B5
+*UIConstraints: *MediaType PrePrinted *PageSize B5
+*UIConstraints: *MediaType PrePunched *PageSize B5
+*UIConstraints: *MediaType Letterhead *PageSize Executive
+*UIConstraints: *MediaType PrePrinted *PageSize Executive
+*UIConstraints: *MediaType PrePunched *PageSize Executive
+*UIConstraints: *MediaType Stationary *PageSize Env10
+*UIConstraints: *MediaType FinePaper *PageSize Env10
+*UIConstraints: *MediaType LabelPaper *PageSize Env10
+*UIConstraints: *MediaType Recycled *PageSize Env10
+*UIConstraints: *MediaType Letterhead *PageSize Env10
+*UIConstraints: *MediaType PrePrinted *PageSize Env10
+*UIConstraints: *MediaType PrePunched *PageSize Env10
+*UIConstraints: *MediaType ColoredPaper *PageSize Env10
+*UIConstraints: *MediaType Stationary *PageSize EnvC5
+*UIConstraints: *MediaType FinePaper *PageSize EnvC5
+*UIConstraints: *MediaType LabelPaper *PageSize EnvC5
+*UIConstraints: *MediaType Recycled *PageSize EnvC5
+*UIConstraints: *MediaType Letterhead *PageSize EnvC5
+*UIConstraints: *MediaType PrePrinted *PageSize EnvC5
+*UIConstraints: *MediaType PrePunched *PageSize EnvC5
+*UIConstraints: *MediaType ColoredPaper *PageSize EnvC5
+*UIConstraints: *MediaType Stationary *PageSize EnvMonarch
+*UIConstraints: *MediaType FinePaper *PageSize EnvMonarch
+*UIConstraints: *MediaType LabelPaper *PageSize EnvMonarch
+*UIConstraints: *MediaType Recycled *PageSize EnvMonarch
+*UIConstraints: *MediaType Letterhead *PageSize EnvMonarch
+*UIConstraints: *MediaType PrePrinted *PageSize EnvMonarch
+*UIConstraints: *MediaType PrePunched *PageSize EnvMonarch
+*UIConstraints: *MediaType ColoredPaper *PageSize EnvMonarch
+*UIConstraints: *MediaType Stationary *PageSize EnvDL
+*UIConstraints: *MediaType FinePaper *PageSize EnvDL
+*UIConstraints: *MediaType LabelPaper *PageSize EnvDL
+*UIConstraints: *MediaType Recycled *PageSize EnvDL
+*UIConstraints: *MediaType Letterhead *PageSize EnvDL
+*UIConstraints: *MediaType PrePrinted *PageSize EnvDL
+*UIConstraints: *MediaType PrePunched *PageSize EnvDL
+*UIConstraints: *MediaType ColoredPaper *PageSize EnvDL
+*% *UIConstraints: *MediaType Stationary *PageSize DLEnvMonarchRotated
+*% *UIConstraints: *MediaType FinePaper *PageSize DLEnvMonarchRotated
+*% *UIConstraints: *MediaType CoatingPaper2 *PageSize DLEnvMonarchRotated
+*% *UIConstraints: *MediaType CoatingPaper3 *PageSize DLEnvMonarchRotated
+*% *UIConstraints: *MediaType LabelPaper *PageSize DLEnvMonarchRotated
+*% *UIConstraints: *MediaType Recycled *PageSize DLEnvMonarchRotated
+*% *UIConstraints: *MediaType Letterhead *PageSize DLEnvMonarchRotated
+*% *UIConstraints: *MediaType PrePrinted *PageSize DLEnvMonarchRotated
+*% *UIConstraints: *MediaType PrePunched *PageSize DLEnvMonarchRotated
+*% *UIConstraints: *MediaType ColoredPaper *PageSize DLEnvMonarchRotated
+*% *UIConstraints: *MediaType Stationary *PageSize DLEnvDLRotated
+*% *UIConstraints: *MediaType FinePaper *PageSize DLEnvDLRotated
+*% *UIConstraints: *MediaType CoatingPaper2 *PageSize DLEnvDLRotated
+*% *UIConstraints: *MediaType CoatingPaper3 *PageSize DLEnvDLRotated
+*% *UIConstraints: *MediaType LabelPaper *PageSize DLEnvDLRotated
+*% *UIConstraints: *MediaType Recycled *PageSize DLEnvDLRotated
+*% *UIConstraints: *MediaType Letterhead *PageSize DLEnvDLRotated
+*% *UIConstraints: *MediaType PrePrinted *PageSize DLEnvDLRotated
+*% *UIConstraints: *MediaType PrePunched *PageSize DLEnvDLRotated
+*% *UIConstraints: *MediaType ColoredPaper *PageSize DLEnvDLRotated
+
+*UIConstraints: *PageSize A5 *MediaType Letterhead
+*UIConstraints: *PageSize A5 *MediaType PrePrinted
+*UIConstraints: *PageSize A5 *MediaType PrePunched
+*UIConstraints: *PageSize B5 *MediaType Letterhead
+*UIConstraints: *PageSize B5 *MediaType PrePrinted
+*UIConstraints: *PageSize B5 *MediaType PrePunched
+*UIConstraints: *PageSize Executive *MediaType Letterhead
+*UIConstraints: *PageSize Executive *MediaType PrePrinted
+*UIConstraints: *PageSize Executive *MediaType PrePunched
+*UIConstraints: *PageSize Env10 *MediaType Stationary
+*UIConstraints: *PageSize Env10 *MediaType FinePaper
+*UIConstraints: *PageSize Env10 *MediaType LabelPaper
+*UIConstraints: *PageSize Env10 *MediaType Recycled
+*UIConstraints: *PageSize Env10 *MediaType Letterhead
+*UIConstraints: *PageSize Env10 *MediaType PrePrinted
+*UIConstraints: *PageSize Env10 *MediaType PrePunched
+*UIConstraints: *PageSize Env10 *MediaType ColoredPaper
+*UIConstraints: *PageSize EnvC5 *MediaType Stationary
+*UIConstraints: *PageSize EnvC5 *MediaType FinePaper
+*UIConstraints: *PageSize EnvC5 *MediaType LabelPaper
+*UIConstraints: *PageSize EnvC5 *MediaType Recycled
+*UIConstraints: *PageSize EnvC5 *MediaType Letterhead
+*UIConstraints: *PageSize EnvC5 *MediaType PrePrinted
+*UIConstraints: *PageSize EnvC5 *MediaType PrePunched
+*UIConstraints: *PageSize EnvC5 *MediaType ColoredPaper
+*UIConstraints: *PageSize EnvMonarch *MediaType Stationary
+*UIConstraints: *PageSize EnvMonarch *MediaType FinePaper
+*UIConstraints: *PageSize EnvMonarch *MediaType LabelPaper
+*UIConstraints: *PageSize EnvMonarch *MediaType Recycled
+*UIConstraints: *PageSize EnvMonarch *MediaType Letterhead
+*UIConstraints: *PageSize EnvMonarch *MediaType PrePrinted
+*UIConstraints: *PageSize EnvMonarch *MediaType PrePunched
+*UIConstraints: *PageSize EnvMonarch *MediaType ColoredPaper
+*UIConstraints: *PageSize EnvDL *MediaType Stationary
+*UIConstraints: *PageSize EnvDL *MediaType FinePaper
+*UIConstraints: *PageSize EnvDL *MediaType LabelPaper
+*UIConstraints: *PageSize EnvDL *MediaType Recycled
+*UIConstraints: *PageSize EnvDL *MediaType Letterhead
+*UIConstraints: *PageSize EnvDL *MediaType PrePrinted
+*UIConstraints: *PageSize EnvDL *MediaType PrePunched
+*UIConstraints: *PageSize EnvDL *MediaType ColoredPaper
+*% *UIConstraints: *PageSize DLEnvMonarchRotated *MediaType Stationary
+*% *UIConstraints: *PageSize DLEnvMonarchRotated *MediaType FinePaper
+*% *UIConstraints: *PageSize DLEnvMonarchRotated *MediaType CoatingPaper2
+*% *UIConstraints: *PageSize DLEnvMonarchRotated *MediaType CoatingPaper3
+*% *UIConstraints: *PageSize DLEnvMonarchRotated *MediaType LabelPaper
+*% *UIConstraints: *PageSize DLEnvMonarchRotated *MediaType Recycled
+*% *UIConstraints: *PageSize DLEnvMonarchRotated *MediaType Letterhead
+*% *UIConstraints: *PageSize DLEnvMonarchRotated *MediaType PrePrinted
+*% *UIConstraints: *PageSize DLEnvMonarchRotated *MediaType PrePunched
+*% *UIConstraints: *PageSize DLEnvMonarchRotated *MediaType ColoredPaper
+*% *UIConstraints: *PageSize DLEnvDLRotated *MediaType Stationary
+*% *UIConstraints: *PageSize DLEnvDLRotated *MediaType FinePaper
+*% *UIConstraints: *PageSize DLEnvDLRotated *MediaType CoatingPaper2
+*% *UIConstraints: *PageSize DLEnvDLRotated *MediaType CoatingPaper3
+*% *UIConstraints: *PageSize DLEnvDLRotated *MediaType LabelPaper
+*% *UIConstraints: *PageSize DLEnvDLRotated *MediaType Recycled
+*% *UIConstraints: *PageSize DLEnvDLRotated *MediaType Letterhead
+*% *UIConstraints: *PageSize DLEnvDLRotated *MediaType PrePrinted
+*% *UIConstraints: *PageSize DLEnvDLRotated *MediaType PrePunched
+*% *UIConstraints: *PageSize DLEnvDLRotated *MediaType ColoredPaper
+
+*% == Constraints (Media Type vs. Page Region) ==
+*UIConstraints: *MediaType Letterhead *PageRegion A5
+*UIConstraints: *MediaType PrePrinted *PageRegion A5
+*UIConstraints: *MediaType PrePunched *PageRegion A5
+*UIConstraints: *MediaType Letterhead *PageRegion B5
+*UIConstraints: *MediaType PrePrinted *PageRegion B5
+*UIConstraints: *MediaType PrePunched *PageRegion B5
+*UIConstraints: *MediaType Letterhead *PageRegion Executive
+*UIConstraints: *MediaType PrePrinted *PageRegion Executive
+*UIConstraints: *MediaType PrePunched *PageRegion Executive
+*UIConstraints: *MediaType Stationary *PageRegion Env10
+*UIConstraints: *MediaType FinePaper *PageRegion Env10
+*UIConstraints: *MediaType LabelPaper *PageRegion Env10
+*UIConstraints: *MediaType Recycled *PageRegion Env10
+*UIConstraints: *MediaType Letterhead *PageRegion Env10
+*UIConstraints: *MediaType PrePrinted *PageRegion Env10
+*UIConstraints: *MediaType PrePunched *PageRegion Env10
+*UIConstraints: *MediaType ColoredPaper *PageRegion Env10
+*UIConstraints: *MediaType Stationary *PageRegion EnvC5
+*UIConstraints: *MediaType FinePaper *PageRegion EnvC5
+*UIConstraints: *MediaType LabelPaper *PageRegion EnvC5
+*UIConstraints: *MediaType Recycled *PageRegion EnvC5
+*UIConstraints: *MediaType Letterhead *PageRegion EnvC5
+*UIConstraints: *MediaType PrePrinted *PageRegion EnvC5
+*UIConstraints: *MediaType PrePunched *PageRegion EnvC5
+*UIConstraints: *MediaType ColoredPaper *PageRegion EnvC5
+*UIConstraints: *MediaType Stationary *PageRegion EnvMonarch
+*UIConstraints: *MediaType FinePaper *PageRegion EnvMonarch
+*UIConstraints: *MediaType LabelPaper *PageRegion EnvMonarch
+*UIConstraints: *MediaType Recycled *PageRegion EnvMonarch
+*UIConstraints: *MediaType Letterhead *PageRegion EnvMonarch
+*UIConstraints: *MediaType PrePrinted *PageRegion EnvMonarch
+*UIConstraints: *MediaType PrePunched *PageRegion EnvMonarch
+*UIConstraints: *MediaType ColoredPaper *PageRegion EnvMonarch
+*UIConstraints: *MediaType Stationary *PageRegion EnvDL
+*UIConstraints: *MediaType FinePaper *PageRegion EnvDL
+*UIConstraints: *MediaType LabelPaper *PageRegion EnvDL
+*UIConstraints: *MediaType Recycled *PageRegion EnvDL
+*UIConstraints: *MediaType Letterhead *PageRegion EnvDL
+*UIConstraints: *MediaType PrePrinted *PageRegion EnvDL
+*UIConstraints: *MediaType PrePunched *PageRegion EnvDL
+*UIConstraints: *MediaType ColoredPaper *PageRegion EnvDL
+*% *UIConstraints: *MediaType Stationary *PageRegion DLEnvMonarchRotated
+*% *UIConstraints: *MediaType FinePaper *PageRegion DLEnvMonarchRotated
+*% *UIConstraints: *MediaType CoatingPaper2 *PageRegion DLEnvMonarchRotated
+*% *UIConstraints: *MediaType CoatingPaper3 *PageRegion DLEnvMonarchRotated
+*% *UIConstraints: *MediaType LabelPaper *PageRegion DLEnvMonarchRotated
+*% *UIConstraints: *MediaType Recycled *PageRegion DLEnvMonarchRotated
+*% *UIConstraints: *MediaType Letterhead *PageRegion DLEnvMonarchRotated
+*% *UIConstraints: *MediaType PrePrinted *PageRegion DLEnvMonarchRotated
+*% *UIConstraints: *MediaType PrePunched *PageRegion DLEnvMonarchRotated
+*% *UIConstraints: *MediaType ColoredPaper *PageRegion DLEnvMonarchRotated
+*% *UIConstraints: *MediaType Stationary *PageRegion DLEnvDLRotated
+*% *UIConstraints: *MediaType FinePaper *PageRegion DLEnvDLRotated
+*% *UIConstraints: *MediaType CoatingPaper2 *PageRegion DLEnvDLRotated
+*% *UIConstraints: *MediaType CoatingPaper3 *PageRegion DLEnvDLRotated
+*% *UIConstraints: *MediaType LabelPaper *PageRegion DLEnvDLRotated
+*% *UIConstraints: *MediaType Recycled *PageRegion DLEnvDLRotated
+*% *UIConstraints: *MediaType Letterhead *PageRegion DLEnvDLRotated
+*% *UIConstraints: *MediaType PrePrinted *PageRegion DLEnvDLRotated
+*% *UIConstraints: *MediaType PrePunched *PageRegion DLEnvDLRotated
+*% *UIConstraints: *MediaType ColoredPaper *PageRegion DLEnvDLRotated
+
+*UIConstraints: *PageRegion A5 *MediaType Letterhead
+*UIConstraints: *PageRegion A5 *MediaType PrePrinted
+*UIConstraints: *PageRegion A5 *MediaType PrePunched
+*UIConstraints: *PageRegion B5 *MediaType Letterhead
+*UIConstraints: *PageRegion B5 *MediaType PrePrinted
+*UIConstraints: *PageRegion B5 *MediaType PrePunched
+*UIConstraints: *PageRegion Executive *MediaType Letterhead
+*UIConstraints: *PageRegion Executive *MediaType PrePrinted
+*UIConstraints: *PageRegion Executive *MediaType PrePunched
+*UIConstraints: *PageRegion Env10 *MediaType Stationary
+*UIConstraints: *PageRegion Env10 *MediaType FinePaper
+*UIConstraints: *PageRegion Env10 *MediaType LabelPaper
+*UIConstraints: *PageRegion Env10 *MediaType Recycled
+*UIConstraints: *PageRegion Env10 *MediaType Letterhead
+*UIConstraints: *PageRegion Env10 *MediaType PrePrinted
+*UIConstraints: *PageRegion Env10 *MediaType PrePunched
+*UIConstraints: *PageRegion Env10 *MediaType ColoredPaper
+*UIConstraints: *PageRegion EnvC5 *MediaType Stationary
+*UIConstraints: *PageRegion EnvC5 *MediaType FinePaper
+*UIConstraints: *PageRegion EnvC5 *MediaType LabelPaper
+*UIConstraints: *PageRegion EnvC5 *MediaType Recycled
+*UIConstraints: *PageRegion EnvC5 *MediaType Letterhead
+*UIConstraints: *PageRegion EnvC5 *MediaType PrePrinted
+*UIConstraints: *PageRegion EnvC5 *MediaType PrePunched
+*UIConstraints: *PageRegion EnvC5 *MediaType ColoredPaper
+*UIConstraints: *PageRegion EnvMonarch *MediaType Stationary
+*UIConstraints: *PageRegion EnvMonarch *MediaType FinePaper
+*UIConstraints: *PageRegion EnvMonarch *MediaType LabelPaper
+*UIConstraints: *PageRegion EnvMonarch *MediaType Recycled
+*UIConstraints: *PageRegion EnvMonarch *MediaType Letterhead
+*UIConstraints: *PageRegion EnvMonarch *MediaType PrePrinted
+*UIConstraints: *PageRegion EnvMonarch *MediaType PrePunched
+*UIConstraints: *PageRegion EnvMonarch *MediaType ColoredPaper
+*UIConstraints: *PageRegion EnvDL *MediaType Stationary
+*UIConstraints: *PageRegion EnvDL *MediaType FinePaper
+*UIConstraints: *PageRegion EnvDL *MediaType LabelPaper
+*UIConstraints: *PageRegion EnvDL *MediaType Recycled
+*UIConstraints: *PageRegion EnvDL *MediaType Letterhead
+*UIConstraints: *PageRegion EnvDL *MediaType PrePrinted
+*UIConstraints: *PageRegion EnvDL *MediaType PrePunched
+*UIConstraints: *PageRegion EnvDL *MediaType ColoredPaper
+*% *UIConstraints: *PageRegion DLEnvMonarchRotated *MediaType Stationary
+*% *UIConstraints: *PageRegion DLEnvMonarchRotated *MediaType FinePaper
+*% *UIConstraints: *PageRegion DLEnvMonarchRotated *MediaType CoatingPaper2
+*% *UIConstraints: *PageRegion DLEnvMonarchRotated *MediaType CoatingPaper3
+*% *UIConstraints: *PageRegion DLEnvMonarchRotated *MediaType LabelPaper
+*% *UIConstraints: *PageRegion DLEnvMonarchRotated *MediaType Recycled
+*% *UIConstraints: *PageRegion DLEnvMonarchRotated *MediaType Letterhead
+*% *UIConstraints: *PageRegion DLEnvMonarchRotated *MediaType PrePrinted
+*% *UIConstraints: *PageRegion DLEnvMonarchRotated *MediaType PrePunched
+*% *UIConstraints: *PageRegion DLEnvMonarchRotated *MediaType ColoredPaper
+*% *UIConstraints: *PageRegion DLEnvDLRotated *MediaType Stationary
+*% *UIConstraints: *PageRegion DLEnvDLRotated *MediaType FinePaper
+*% *UIConstraints: *PageRegion DLEnvDLRotated *MediaType CoatingPaper2
+*% *UIConstraints: *PageRegion DLEnvDLRotated *MediaType CoatingPaper3
+*% *UIConstraints: *PageRegion DLEnvDLRotated *MediaType LabelPaper
+*% *UIConstraints: *PageRegion DLEnvDLRotated *MediaType Recycled
+*% *UIConstraints: *PageRegion DLEnvDLRotated *MediaType Letterhead
+*% *UIConstraints: *PageRegion DLEnvDLRotated *MediaType PrePrinted
+*% *UIConstraints: *PageRegion DLEnvDLRotated *MediaType PrePunched
+*% *UIConstraints: *PageRegion DLEnvDLRotated *MediaType ColoredPaper
+
+*% == Constraints (Media Type vs. Input Slot) ==
+*UIConstraints: *MediaType CoatingPaper2 *InputSlot 1stTray
+*UIConstraints: *MediaType CoatingPaper3 *InputSlot 1stTray
+*UIConstraints: *MediaType ThickPaper *InputSlot 2ndTray
+*UIConstraints: *MediaType SuperThickPaper *InputSlot 2ndTray
+*UIConstraints: *MediaType CoatingPaper2 *InputSlot 2ndTray
+*UIConstraints: *MediaType CoatingPaper3 *InputSlot 2ndTray
+*UIConstraints: *MediaType LabelPaper *InputSlot 2ndTray
+*UIConstraints: *MediaType Envelope *InputSlot 2ndTray
+*UIConstraints: *MediaType LabelPaper *InputSlot BypassTray
+
+*UIConstraints: *InputSlot 1stTray *MediaType CoatingPaper2
+*UIConstraints: *InputSlot 1stTray *MediaType CoatingPaper3
+*UIConstraints: *InputSlot 2ndTray *MediaType ThickPaper
+*UIConstraints: *InputSlot 2ndTray *MediaType SuperThickPaper
+*UIConstraints: *InputSlot 2ndTray *MediaType CoatingPaper2
+*UIConstraints: *InputSlot 2ndTray *MediaType CoatingPaper3
+*UIConstraints: *InputSlot 2ndTray *MediaType LabelPaper
+*UIConstraints: *InputSlot 2ndTray *MediaType Envelope
+*UIConstraints: *InputSlot BypassTray *MediaType LabelPaper
+
+*% == Constraints (Trapping vs ColorMode) ==
+*UIConstraints: *DLTrapping True *DLColorMode Black
+
+*UIConstraints: *DLColorMode Black *DLTrapping True
+
+*% == Constraints (PageSize vs DLSubPaperSelection) ==
+*UIConstraints: *PageSize Env10 *DLSubPaperSelection Policy0
+*UIConstraints: *PageSize Env10 *DLSubPaperSelection Policy6
+*UIConstraints: *PageSize EnvMonarch *DLSubPaperSelection Policy0
+*UIConstraints: *PageSize EnvMonarch *DLSubPaperSelection Policy6
+*% *UIConstraints: *PageSize DLEnvMonarchRotated *DLSubPaperSelection Policy0
+*% *UIConstraints: *PageSize DLEnvMonarchRotated *DLSubPaperSelection Policy6
+*UIConstraints: *PageSize EnvDL *DLSubPaperSelection Policy0
+*UIConstraints: *PageSize EnvDL *DLSubPaperSelection Policy6
+*% *UIConstraints: *PageSize DLEnvDLRotated *DLSubPaperSelection Policy0
+*% *UIConstraints: *PageSize DLEnvDLRotated *DLSubPaperSelection Policy6
+*UIConstraints: *PageSize EnvC5 *DLSubPaperSelection Policy0
+*UIConstraints: *PageSize EnvC5 *DLSubPaperSelection Policy6
+
+*UIConstraints: *DLSubPaperSelection Policy0 *PageSize Env10
+*UIConstraints: *DLSubPaperSelection Policy6 *PageSize Env10
+*UIConstraints: *DLSubPaperSelection Policy0 *PageSize EnvMonarch
+*UIConstraints: *DLSubPaperSelection Policy6 *PageSize EnvMonarch
+*% *UIConstraints: *DLSubPaperSelection Policy0 *PageSize DLEnvMonarchRotated
+*% *UIConstraints: *DLSubPaperSelection Policy6 *PageSize DLEnvMonarchRotated
+*UIConstraints: *DLSubPaperSelection Policy0 *PageSize EnvDL
+*UIConstraints: *DLSubPaperSelection Policy6 *PageSize EnvDL
+*% *UIConstraints: *DLSubPaperSelection Policy0 *PageSize DLEnvDLRotated
+*% *UIConstraints: *DLSubPaperSelection Policy6 *PageSize DLEnvDLRotated
+*UIConstraints: *DLSubPaperSelection Policy0 *PageSize EnvC5
+*UIConstraints: *DLSubPaperSelection Policy6 *PageSize EnvC5
+
+*% ==== Device Capabilities ===============
+*LanguageLevel: "3"
+*Protocols: TBCP
+*1284Modes Parallel: Compat Nibble ECP
+*1284DeviceID: "MFG:Dell;CMD:PJL,PCLXL,PCL,HBPL;MDL:2155cn Color Laser;DES:Dell 2155cn Color Laser;CLS:PRINTER;"
+
+*ColorDevice: True
+*DefaultColorSpace: CMYK
+*VariablePaperSize: True
+*LandscapeOrientation: Minus90
+*TTRasterizer: Type42
+*FileSystem: False
+*Throughput: "23"
+*DefaultResolution: 600dpi
+
+*% Collate ===============
+*OpenUI *Collate/Collate: PickOne
+*OrderDependency: 15.0 AnySetup *Collate
+*DefaultCollate: False
+*Collate True/On: ""
+*Collate False/Off: ""
+*CloseUI: *Collate
+
+
+*% Paper Handling ===================
+*OpenUI *PageSize: PickOne
+*OrderDependency: 60.0 AnySetup *PageSize
+*DefaultPageSize: A4
+*PageSize A4/A4 (210 x 297 mm): "<</PageSize[595 842]/ImagingBBox null>>setpagedevice"
+*PageSize B5/B5 (182 x 257 mm): "<</PageSize[516 729]/ImagingBBox null>>setpagedevice"
+*PageSize A5/A5 (148 x 210 mm): "<</PageSize[420 595]/ImagingBBox null>>setpagedevice"
+*PageSize Letter/Letter (8.5 x 11 in): "<</PageSize[612 792]/ImagingBBox null>>setpagedevice"
+*PageSize FanFoldGermanLegal/Folio (8.5 x 13 in): "<</PageSize[612 936]/ImagingBBox null>>setpagedevice"
+*PageSize Legal/Legal (8.5 x 14 in): "<</PageSize[612 1008]/ImagingBBox null>>setpagedevice"
+*PageSize Executive/Executive (7.25 x 10.5 in): "<</PageSize[522 756]/ImagingBBox null>>setpagedevice"
+*PageSize Env10/Envelope #10: "<</PageSize[297 684]/ImagingBBox null>>setpagedevice"
+*PageSize EnvMonarch/Monarch (Portrait): "<</PageSize[279 540]/ImagingBBox null>>setpagedevice"
+*% *PageSize DLEnvMonarchRotated/Monarch (Landscape): "<</PageSize[540 279]/ImagingBBox null>>setpagedevice"
+*PageSize EnvDL/DL (Portrait): "<</PageSize[312 624]/ImagingBBox null>>setpagedevice"
+*% *PageSize DLEnvDLRotated/DL (Landscape): "<</PageSize[624 312]/ImagingBBox null>>setpagedevice"
+*PageSize EnvC5/C5: "<</PageSize[459 649]/ImagingBBox null>>setpagedevice"
+*CloseUI: *PageSize
+
+*OpenUI *PageRegion:  PickOne
+*OrderDependency: 80.0 AnySetup *PageRegion
+*DefaultPageRegion: A4
+*PageRegion A4/A4 (210 x 297 mm): "<</PageSize[595 842]/ImagingBBox null>>setpagedevice"
+*PageRegion B5/B5 (182 x 257 mm): "<</PageSize[516 729]/ImagingBBox null>>setpagedevice"
+*PageRegion A5/A5 (148 x 210 mm): "<</PageSize[420 595]/ImagingBBox null>>setpagedevice"
+*PageRegion Letter/Letter (8.5 x 11 in): "<</PageSize[612 792]/ImagingBBox null>>setpagedevice"
+*PageRegion FanFoldGermanLegal/Folio (8.5 x 13 in): "<</PageSize[612 936]/ImagingBBox null>>setpagedevice"
+*PageRegion Legal/Legal (8.5 x 14 in): "<</PageSize[612 1008]/ImagingBBox null>>setpagedevice"
+*PageRegion Executive/Executive (7.25 x 10.5 in): "<</PageSize[522 756]/ImagingBBox null>>setpagedevice"
+*PageRegion Env10/Envelope #10: "<</PageSize[297 684]/ImagingBBox null>>setpagedevice"
+*PageRegion EnvMonarch/Monarch (Portrait): "<</PageSize[279 540]/ImagingBBox null>>setpagedevice"
+*% *PageRegion DLEnvMonarchRotated/Monarch (Landscape): "<</PageSize[540 279]/ImagingBBox null>>setpagedevice"
+*PageRegion EnvDL/DL (Portrait): "<</PageSize[312 624]/ImagingBBox null>>setpagedevice"
+*% *PageRegion DLEnvDLRotated/DL (Landscape): "<</PageSize[624 312]/ImagingBBox null>>setpagedevice"
+*PageRegion EnvC5/C5: "<</PageSize[459 649]/ImagingBBox null>>setpagedevice"
+*CloseUI: *PageRegion
+
+*% The following entries provide information about specific paper keywords.
+*DefaultImageableArea: A4
+*ImageableArea A4/A4 (210 x 297 mm): "11.62 11.62 583.38 830.38 "
+*ImageableArea B5/B5 (182 x 257 mm): "11.62 11.62 504.38 717.38 "
+*ImageableArea A5/A5 (148 x 210 mm): "11.62 11.62 408.38 583.38 "
+*ImageableArea Letter/Letter (8.5 x 11 in): "11.62 11.62 600.38 780.38 "
+*ImageableArea FanFoldGermanLegal/Folio (8.5 x 13 in): "11.62 11.62 600.38 924.38 "
+*ImageableArea Legal/Legal (8.5 x 14 in): "11.62 11.62 600.38 996.38 "
+*ImageableArea Executive/Executive (7.25 x 10.5 in): "11.62 11.62 510.38 744.38 "
+*ImageableArea Env10/Envelope #10: "11.62 11.62 285.38 672.38 "
+*ImageableArea EnvMonarch/Monarch (Portrait): "11.62 11.62 267.38 528.38 "
+*% *ImageableArea DLEnvMonarchRotated/Monarch (Landscape): "11.62 11.62 528.38 267.38 "
+*ImageableArea EnvDL/DL (Portrait): "11.62 11.62 300.38 612.38 "
+*% *ImageableArea DLEnvDLRotated/DL (Landscape): "17.29 11.62 606.71 300.38 "
+*ImageableArea EnvC5/C5: "11.62 11.62 447.38 637.38 "
+
+*% These provide the physical dimensions of the paper (by keyword)
+*DefaultPaperDimension: A4
+*PaperDimension A4/A4 (210 x 297 mm): "595 842"
+*PaperDimension B5/B5 (182 x 257 mm): "516 729"
+*PaperDimension A5/A5 (148 x 210 mm): "420 595"
+*PaperDimension Letter/Letter (8.5 x 11 in): "612 792"
+*PaperDimension FanFoldGermanLegal/Folio (8.5 x 13 in): "612 936"
+*PaperDimension Legal/Legal (8.5 x 14 in): "612 1008"
+*PaperDimension Executive/Executive (7.25 x 10.5 in): "522 756"
+*PaperDimension Env10/Envelope #10: "297 684"
+*PaperDimension EnvMonarch/Monarch (Portrait): "279 540"
+*% *PaperDimension DLEnvMonarchRotated/Monarch (Landscape): "540 279"
+*PaperDimension EnvDL/DL (Portrait): "312 624"
+*% *PaperDimension DLEnvDLRotated/DL (Landscape): "624 312"
+*PaperDimension EnvC5/C5: "459 649"
+
+*% Custom Page Sizes ===================
+*% min: 216 pts x 360 pts   (3.00 inch * 5.00 inch) 
+*% max: 612 pts x 1009 pts  (8.50 inch * 14.01 inch)
+
+*MaxMediaWidth: "612"
+*MaxMediaHeight: "1009"
+*HWMargins: 11 11 11 11
+*% *CustomPageSize True: "pop pop pop <</PageSize [5 -2 roll] /ImagingBBox null>> setpagedevice"
+*% *ParamCustomPageSize Width:  1 points 216 612
+*% *ParamCustomPageSize Height: 2 points 360 1009
+*% *ParamCustomPageSize WidthOffset: 3 points 0 0
+*% *ParamCustomPageSize HeightOffset: 4 points 0 0
+*% *ParamCustomPageSize Orientation: 5 int 1 1
+
+*OpenGroup: Basic/Basic
+*% ColorMode Information ===================
+*OpenUI *DLColorMode/Output Color:PickOne
+*OrderDependency: 20.0 AnySetup *DLColorMode
+*DefaultDLColorMode: Color
+*DLColorMode Black/Black: "<</cupsColorSpace 1/cupsColorOrder 0/cupsBitsPerColor 8 /HWResolution[600 600]>>setpagedevice"
+*DLColorMode Color/Color: "<</cupsColorSpace 1/cupsColorOrder 0/cupsBitsPerColor 8 /HWResolution[600 600]>>setpagedevice"
+*CloseUI: *DLColorMode
+
+*% InputSlot Information ================
+*OpenUI *InputSlot/Paper Source: PickOne
+*OrderDependency: 50.0 AnySetup *InputSlot
+*DefaultInputSlot: AutoSelect
+*InputSlot AutoSelect/Auto Select: ""
+*InputSlot 1stTray/Tray 1: ""
+*InputSlot 2ndTray/Tray 2: ""
+*InputSlot BypassTray/SSF: ""
+*CloseUI: *InputSlot
+
+*% MediaType ===============
+*OpenUI *MediaType/Paper Type:  PickOne
+*OrderDependency: 90.0 AnySetup *MediaType
+*DefaultMediaType: Default
+*MediaType Default/None: ""
+*MediaType Stationary/Plain: ""
+*MediaType FinePaper/Plain Thick: ""
+*MediaType Recycled/Recycled: ""
+*MediaType LabelPaper/Label: ""
+*MediaType ThickPaper/Covers (106-163g/m2): ""
+*MediaType SuperThickPaper/Covers Thick (164-216g/m2): ""
+*MediaType CoatingPaper2/Coated (106-163g/m2): ""
+*MediaType CoatingPaper3/Coated Thick (164-216g/m2): ""
+*MediaType Letterhead/Letterhead: ""
+*MediaType PrePrinted/Preprinted:""
+*MediaType PrePunched/Prepunched:""
+*MediaType ColoredPaper/Color:""
+*MediaType Envelope/Envelope: ""
+*CloseUI: *MediaType
+
+*% SPS ===============
+*OpenUI *DLSubPaperSelection/Substitute Tray: PickOne
+*OrderDependency: 40.0 AnySetup *DLSubPaperSelection
+*DefaultDLSubPaperSelection: Policy0
+*DLSubPaperSelection Policy0/Use Printer Settings: ""
+*DLSubPaperSelection Policy2/Display Message: ""
+*DLSubPaperSelection Policy6/Use Larger Size (No Zoom): ""
+*CloseUI: *DLSubPaperSelection
+
+*CloseGroup: Basic
+
+*OpenGroup: DetailedSettings/Detailed Settings
+*% Document Type ===================
+*OpenUI *DLDocumentType/Image Type:PickOne
+*OrderDependency: 20.0 AnySetup *DLDocumentType
+*DefaultDLDocumentType: Normal
+*DLDocumentType Normal/Normal: "<</DLDLUT 11/DLUCR 11/DLTRC 11/DLSCREEN 11/DLMONOTRC 33/DLMONOSCREEN 33>>setpagedevice"
+*DLDocumentType Photo/Photo: "<</DLDLUT 14/DLUCR 14/DLTRC 14/DLSCREEN 14/DLMONOTRC 33/DLMONOSCREEN 33>>setpagedevice"
+*DLDocumentType Presentation/Business Graphics: "<</DLDLUT 15/DLUCR 15/DLTRC 15/DLSCREEN 15/DLMONOTRC 33/DLMONOSCREEN 33>>setpagedevice"
+*DLDocumentType Web/Screen Display: "<</DLDLUT 17/DLUCR 17/DLTRC 17/DLSCREEN 17/DLMONOTRC 33/DLMONOSCREEN 33>>setpagedevice"
+*DLDocumentType Off/Off: "<</DLDLUT 31/DLUCR 31/DLTRC 31/DLSCREEN 31/DLMONOTRC 33/DLMONOSCREEN 33>>setpagedevice"
+*CloseUI: *DLDocumentType
+
+*% Screen Settings ===================
+*OpenUI *DLScreen2/Screen:PickOne
+*OrderDependency: 20.0 AnySetup *DLScreen2
+*DefaultDLScreen2: Auto
+*DLScreen2 Auto/Auto: "<<>>setpagedevice"
+*DLScreen2 Fineness/Fineness: "<</DLSCREEN2 61/DLMONOSCREEN2 64>>setpagedevice"
+*DLScreen2 Standard/Standard: "<</DLSCREEN2 62/DLMONOSCREEN2 65>>setpagedevice"
+*DLScreen2 Gradation/Gradation: "<</DLSCREEN2 63/DLMONOSCREEN2 66>>setpagedevice"
+*CloseUI: *DLScreen2
+
+*% Turn Page Orientation ===================
+*OpenUI *DLTurnPage/Image Rotation (180deg):  PickOne
+*OrderDependency: 110.0 AnySetup *DLTurnPage
+*DefaultDLTurnPage: False
+*DLTurnPage True/On:  ""
+*DLTurnPage False/Off: ""
+*CloseUI: *DLTurnPage
+
+*% Skip Blank Paper ===============
+*OpenUI *DLSkip/Skip Blank Pages: PickOne
+*OrderDependency: 40.0 AnySetup *DLSkip 
+*DefaultDLSkip: False
+*DLSkip True/On: ""
+*DLSkip False/Off: ""
+*CloseUI: *DLSkip
+
+*% TonerSaver Information ===================
+*OpenUI *DLTonerSaver/Draft Mode:  PickOne
+*OrderDependency: 29.0 AnySetup *DLTonerSaver
+*DefaultDLTonerSaver: False
+*DLTonerSaver True/On:  ""
+*DLTonerSaver False/Off: ""
+*CloseUI: *DLTonerSaver
+
+*% Trapping ===================
+*OpenUI *DLTrapping/Trapping:  PickOne
+*OrderDependency: 40.0 AnySetup *DLTrapping
+*DefaultDLTrapping: False
+*DLTrapping True/On:  ""
+*DLTrapping False/Off: ""
+*CloseUI: *DLTrapping
+
+*% Image Enhancement ===================
+*OpenUI *DLEdgeEnhance/Image Enhancement:  PickOne
+*OrderDependency: 40.0 AnySetup *DLEdgeEnhance
+*DefaultDLEdgeEnhance: False
+*DLEdgeEnhance True/Enable:  ""
+*DLEdgeEnhance False/Disable: ""
+*CloseUI: *DLEdgeEnhance
+
+*% Sharpness Adjustment ===================
+*OpenUI *DLDigitalFilter/Sharpness Adjustment:  PickOne
+*OrderDependency: 40.0 AnySetup *DLDigitalFilter
+*DefaultDLDigitalFilter: Off
+*DLDigitalFilter Off/Off:  ""
+*DLDigitalFilter Low/Low:  ""
+*DLDigitalFilter Middle/Middle: ""
+*DLDigitalFilter High/High: ""
+*CloseUI: *DLDigitalFilter
+
+
+*CloseGroup: DetailedSettings
+
+*% Color Balance Settings ===================
+*OpenGroup: DLColorBalanceSettings/Color Balance
+
+*% Color Balance Cyan ===================
+*OpenSubGroup: DLColorBalanceGroupC/Color Balance C
+*OpenUI *DLColorDensityCyanLow/Low Density (C): PickOne
+*OrderDependency: 41.0 AnySetup *DLColorDensityCyanLow
+*DefaultDLColorDensityCyanLow: 0
+*DLColorDensityCyanLow +3/Darker (+3): ""
+*DLColorDensityCyanLow +2/Darker (+2): ""
+*DLColorDensityCyanLow +1/Darker (+1): ""
+*DLColorDensityCyanLow 0/Normal: ""
+*DLColorDensityCyanLow -1/Lighter (-1): ""
+*DLColorDensityCyanLow -2/Lighter (-2): ""
+*DLColorDensityCyanLow -3/Lighter (-3): ""
+*CloseUI: *DLColorDensityCyanLow
+
+*OpenUI *DLColorDensityCyanMid/Medium Density (C): PickOne
+*OrderDependency: 42.0 AnySetup *DLColorDensityCyanMid
+*DefaultDLColorDensityCyanMid: 0
+*DLColorDensityCyanMid +3/Darker (+3): ""
+*DLColorDensityCyanMid +2/Darker (+2): ""
+*DLColorDensityCyanMid +1/Darker (+1): ""
+*DLColorDensityCyanMid 0/Normal: ""
+*DLColorDensityCyanMid -1/Lighter (-1): ""
+*DLColorDensityCyanMid -2/Lighter (-2): ""
+*DLColorDensityCyanMid -3/Lighter (-3): ""
+*CloseUI: *DLColorDensityCyanMid
+
+*OpenUI *DLColorDensityCyanHigh/High Density (C): PickOne
+*OrderDependency: 43.0 AnySetup *DLColorDensityCyanHigh
+*DefaultDLColorDensityCyanHigh: 0
+*DLColorDensityCyanHigh +3/Darker (+3): ""
+*DLColorDensityCyanHigh +2/Darker (+2): ""
+*DLColorDensityCyanHigh +1/Darker (+1): ""
+*DLColorDensityCyanHigh 0/Normal: ""
+*DLColorDensityCyanHigh -1/Lighter (-1): ""
+*DLColorDensityCyanHigh -2/Lighter (-2): ""
+*DLColorDensityCyanHigh -3/Lighter (-3): ""
+*CloseUI: *DLColorDensityCyanHigh
+*CloseSubGroup: DLColorBalanceGroupC
+
+*% Color Balance Magenta ===================
+*OpenSubGroup: DLColorBalanceGroupM/Color Balance M
+*OpenUI *DLColorDensityMagentaLow/Low Density (M): PickOne
+*OrderDependency: 44.0 AnySetup *DLColorDensityMagentaLow
+*DefaultDLColorDensityMagentaLow: 0
+*DLColorDensityMagentaLow +3/Darker (+3): ""
+*DLColorDensityMagentaLow +2/Darker (+2): ""
+*DLColorDensityMagentaLow +1/Darker (+1): ""
+*DLColorDensityMagentaLow 0/Normal: ""
+*DLColorDensityMagentaLow -1/Lighter (-1): ""
+*DLColorDensityMagentaLow -2/Lighter (-2): ""
+*DLColorDensityMagentaLow -3/Lighter (-3): ""
+*CloseUI: *DLColorDensityMagentaLow
+
+*OpenUI *DLColorDensityMagentaMid/Medium Density (M): PickOne
+*OrderDependency: 45.0 AnySetup *DLColorDensityMagentaMid
+*DefaultDLColorDensityMagentaMid: 0
+*DLColorDensityMagentaMid +3/Darker (+3): ""
+*DLColorDensityMagentaMid +2/Darker (+2): ""
+*DLColorDensityMagentaMid +1/Darker (+1): ""
+*DLColorDensityMagentaMid 0/Normal: ""
+*DLColorDensityMagentaMid -1/Lighter (-1): ""
+*DLColorDensityMagentaMid -2/Lighter (-2): ""
+*DLColorDensityMagentaMid -3/Lighter (-3): ""
+*CloseUI: *DLColorDensityMagentaMid
+
+*OpenUI *DLColorDensityMagentaHigh/High Density (M): PickOne
+*OrderDependency: 46.0 AnySetup *DLColorDensityMagentaHigh
+*DefaultDLColorDensityMagentaHigh: 0
+*DLColorDensityMagentaHigh +3/Darker (+3): ""
+*DLColorDensityMagentaHigh +2/Darker (+2): ""
+*DLColorDensityMagentaHigh +1/Darker (+1): ""
+*DLColorDensityMagentaHigh 0/Normal: ""
+*DLColorDensityMagentaHigh -1/Lighter (-1): ""
+*DLColorDensityMagentaHigh -2/Lighter (-2): ""
+*DLColorDensityMagentaHigh -3/Lighter (-3): ""
+*CloseUI: *DLColorDensityMagentaHigh
+*CloseSubGroup: DLColorBalanceGroupM
+
+*% Color Balance Yellow ===================
+*OpenSubGroup: DLColorBalanceGroupY/Color Balance Y
+*OpenUI *DLColorDensityYellowLow/Low Density (Y): PickOne
+*OrderDependency: 47.0 AnySetup *DLColorDensityYellowLow
+*DefaultDLColorDensityYellowLow: 0
+*DLColorDensityYellowLow +3/Darker (+3): ""
+*DLColorDensityYellowLow +2/Darker (+2): ""
+*DLColorDensityYellowLow +1/Darker (+1): ""
+*DLColorDensityYellowLow 0/Normal: ""
+*DLColorDensityYellowLow -1/Lighter (-1): ""
+*DLColorDensityYellowLow -2/Lighter (-2): ""
+*DLColorDensityYellowLow -3/Lighter (-3): ""
+*CloseUI: *DLColorDensityYellowLow
+
+*OpenUI *DLColorDensityYellowMid/Medium Density (Y): PickOne
+*OrderDependency: 48.0 AnySetup *DLColorDensityYellowMid
+*DefaultDLColorDensityYellowMid: 0
+*DLColorDensityYellowMid +3/Darker (+3): ""
+*DLColorDensityYellowMid +2/Darker (+2): ""
+*DLColorDensityYellowMid +1/Darker (+1): ""
+*DLColorDensityYellowMid 0/Normal: ""
+*DLColorDensityYellowMid -1/Lighter (-1): ""
+*DLColorDensityYellowMid -2/Lighter (-2): ""
+*DLColorDensityYellowMid -3/Lighter (-3): ""
+*CloseUI: *DLColorDensityYellowMid
+
+*OpenUI *DLColorDensityYellowHigh/High Density (Y): PickOne
+*OrderDependency: 49.0 AnySetup *DLColorDensityYellowHigh
+*DefaultDLColorDensityYellowHigh: 0
+*DLColorDensityYellowHigh +3/Darker (+3): ""
+*DLColorDensityYellowHigh +2/Darker (+2): ""
+*DLColorDensityYellowHigh +1/Darker (+1): ""
+*DLColorDensityYellowHigh 0/Normal: ""
+*DLColorDensityYellowHigh -1/Lighter (-1): ""
+*DLColorDensityYellowHigh -2/Lighter (-2): ""
+*DLColorDensityYellowHigh -3/Lighter (-3): ""
+*CloseUI: *DLColorDensityYellowHigh
+*CloseSubGroup: DLColorBalanceGroupY
+
+*% Color Balance Black ===================
+*OpenSubGroup: DLColorBalanceGroupK/Color Balance K
+*OpenUI *DLColorDensityBlackLow/Low Density (K): PickOne
+*OrderDependency: 50.0 AnySetup *DLColorDensityBlackLow
+*DefaultDLColorDensityBlackLow: 0
+*DLColorDensityBlackLow +3/Darker (+3): ""
+*DLColorDensityBlackLow +2/Darker (+2): ""
+*DLColorDensityBlackLow +1/Darker (+1): ""
+*DLColorDensityBlackLow 0/Normal: ""
+*DLColorDensityBlackLow -1/Lighter (-1): ""
+*DLColorDensityBlackLow -2/Lighter (-2): ""
+*DLColorDensityBlackLow -3/Lighter (-3): ""
+*CloseUI: *DLColorDensityBlackLow
+
+*OpenUI *DLColorDensityBlackMid/Medium Density (K): PickOne
+*OrderDependency: 51.0 AnySetup *DLColorDensityBlackMid
+*DefaultDLColorDensityBlackMid: 0
+*DLColorDensityBlackMid +3/Darker (+3): ""
+*DLColorDensityBlackMid +2/Darker (+2): ""
+*DLColorDensityBlackMid +1/Darker (+1): ""
+*DLColorDensityBlackMid 0/Normal: ""
+*DLColorDensityBlackMid -1/Lighter (-1): ""
+*DLColorDensityBlackMid -2/Lighter (-2): ""
+*DLColorDensityBlackMid -3/Lighter (-3): ""
+*CloseUI: *DLColorDensityBlackMid
+
+*OpenUI *DLColorDensityBlackHigh/High Density (K): PickOne
+*OrderDependency: 52.0 AnySetup *DLColorDensityBlackHigh
+*DefaultDLColorDensityBlackHigh: 0
+*DLColorDensityBlackHigh +3/Darker (+3): ""
+*DLColorDensityBlackHigh +2/Darker (+2): ""
+*DLColorDensityBlackHigh +1/Darker (+1): ""
+*DLColorDensityBlackHigh 0/Normal: ""
+*DLColorDensityBlackHigh -1/Lighter (-1): ""
+*DLColorDensityBlackHigh -2/Lighter (-2): ""
+*DLColorDensityBlackHigh -3/Lighter (-3): ""
+*CloseUI: *DLColorDensityBlackHigh
+*CloseSubGroup: DLColorBalanceGroupK
+
+*CloseGroup: DLColorBalanceSettings
+
+*% end of PPD file

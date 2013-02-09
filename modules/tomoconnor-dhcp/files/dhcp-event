@@ -1,0 +1,101 @@
+#!/usr/bin/env python
+
+import psycopg2
+import os, sys
+import pprint
+import time
+from IPy import IP
+import logging
+
+pp = pprint.PrettyPrinter()
+
+pg_host = "localhost"
+#pg_host = "dns-1"
+pg_user = "powerdns"
+pg_db   = "powerdns"
+pg_pass = "igotthep0wer"
+
+domain_id     = 23
+ptr_domain_id = 22
+
+default_domain = 'london.tomoconnor.eu'
+
+
+logging.basicConfig(level=logging.DEBUG,
+                    format='%(asctime)s %(name)-12s %(levelname)-8s %(message)s',
+                    datefmt='%m-%d %H:%M',
+                    filename='/var/log/dhcp-event.log')
+
+def getReverseName(ipAddress):
+    return IP(ipAddress).reverseName().rstrip('.')
+
+if __name__ == '__main__':
+
+    if (len(sys.argv) < 1):
+        sys.exit(1)
+        logging.error("not enough arguments, FAIL.")
+
+
+    db =  psycopg2.connect(database=pg_db, user=pg_user, password = pg_pass, host=pg_host)
+    cursor = db.cursor()
+    #ClientIP, ClientMac, host-decl-name
+    command   = sys.argv[1]
+    clientIP  = sys.argv[2]
+    clientMac = sys.argv[3]
+    hostname  = sys.argv[4]
+    hostname = "{0}.{1}".format(hostname,default_domain)
+
+    if command == "commit":
+        logging.info("\nLeased: %s to %s" % (clientIP, hostname))
+
+        entry_count_sql = cursor.mogrify("SELECT domain_id, name, type, content,change_date FROM records WHERE domain_id = %s AND name = %s", (domain_id, hostname))
+        cursor.execute(entry_count_sql)
+        # Select where the name is the same as the requested hostname.
+
+        logging.debug(entry_count_sql)
+        logging.info("Existing Records: %d" % cursor.rowcount)
+        # count the number of rows inside the current domain, where the current hostname we're working with has already been set up
+
+        if cursor.rowcount >= 1:
+            #we want to do a clean update, so we'll delete the matches inside a) the A records and b, the PTRs
+            all_rows = cursor.fetchall()
+            for row in all_rows:
+                (del_hostname, del_clientIP) = (row[1],row[3])
+                #(del_hostname, del_clientIP) = (hostname,clientIP) ## BUG. BUG. BUUUUG.
+
+                del_forward_sql = cursor.mogrify("DELETE FROM records WHERE content = %s AND name = %s",(del_clientIP,del_hostname))
+                del_reverse_sql = cursor.mogrify("DELETE FROM records WHERE content = %s AND name = %s",(del_hostname,getReverseName(del_clientIP)))
+                logging.debug(del_forward_sql)
+                logging.debug(del_reverse_sql)
+
+                cursor.execute(del_forward_sql)
+                cursor.execute(del_reverse_sql)
+                
+        # At this point, we've either deleted existing records, or there weren't any.. so we'll create them.
+        ins_forward_sql = cursor.mogrify("INSERT INTO records (domain_id,name,type,content,ttl,prio,change_date) VALUES (%s,%s,%s,%s,%s,%s,%s)",(domain_id,hostname,"A",clientIP,3600,0,int(time.time())))
+        ins_reverse_sql = cursor.mogrify("INSERT INTO records (domain_id,name,type,content,ttl,prio,change_date) VALUES (%s,%s,%s,%s,%s,%s,%s)",(ptr_domain_id, getReverseName(clientIP),"PTR",hostname,3600,0,int(time.time())))
+                                         
+        logging.debug(ins_forward_sql)
+        logging.debug(ins_reverse_sql)
+
+        cursor.execute(ins_forward_sql)
+        cursor.execute(ins_reverse_sql)
+
+        cursor.close()
+        db.commit()
+
+    else:
+        logging.info("\nExpired/Released: %s from %s" % (clientIP, hostname))
+
+        del_forward_sql = cursor.mogrify("DELETE FROM records WHERE content = %s AND name = %s",(clientIP,hostname))
+        del_reverse_sql = cursor.mogrify("DELETE FROM records WHERE content = %s AND name = %s",(hostname,getReverseName(clientIP)))
+        logging.debug(del_forward_sql)
+        logging.debug(del_reverse_sql)
+        
+        try:
+            cursor.execute(del_forward_sql)
+            cursor.execute(del_reverse_sql)
+        except:
+            logging.error("FAILED TO DELETE RECORDS")
+        db.commit()
+

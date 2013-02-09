@@ -1,0 +1,7 @@
+# /etc/cron.d/check_lag
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+MAILTO=root
+
+* * * * *	root	/usr/local/bin/check_lag.sh
+
+#EOF

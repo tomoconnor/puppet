@@ -1,0 +1,13 @@
+#
+# Clients should be able to authenticate with this profile if following
+# Network Authentication in the Ubuntu Server guide.  Please note that
+# these settings are not suitable for sometimes disconnected (eg laptop)
+# systems.  The example is taken from LDAPClientAuthentication at:
+# https://help.ubuntu.com/community/LDAPClientAuthentication
+# 
+[lac_ldap]
+nss_passwd=passwd: files ldap
+nss_group=group: files ldap
+nss_shadow=shadow: files ldap
+nss_netgroup=netgroup: nis
+

@@ -1,0 +1,24 @@
+postgres
+
+This is the postgres module.
+
+node "dbserver" {
+	include postgres
+	include postgres::client
+	include	postgres::libraries
+	postgres::role{ "powerdns":
+		ensure => present,
+		password => "",
+	}
+	postgres::database { "powerdns":
+		ensure => present,
+	}
+	postgres::grant {
+		ensure => present,
+		owner => powerdns,
+		database => powerdns,
+		password => '',
+	}
+
+}
+

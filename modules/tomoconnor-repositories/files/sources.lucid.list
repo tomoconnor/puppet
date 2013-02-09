@@ -1,0 +1,23 @@
+deb http://apt/ubuntu lucid main restricted
+deb-src http://apt/ubuntu lucid main restricted
+
+deb http://apt/ubuntu lucid-updates main restricted
+deb-src http://apt/ubuntu lucid-updates main restricted
+
+deb http://apt/ubuntu lucid universe
+deb-src http://apt/ubuntu lucid universe
+deb http://apt/ubuntu lucid-updates universe
+deb-src http://apt/ubuntu lucid-updates universe
+
+deb http://apt/ubuntu lucid multiverse
+deb-src http://apt/ubuntu lucid multiverse
+deb http://apt/ubuntu lucid-updates multiverse
+deb-src http://apt/ubuntu lucid-updates multiverse
+
+deb http://apt/ubuntu lucid-security main restricted
+deb-src http://apt/ubuntu lucid-security main restricted
+deb http://apt/ubuntu lucid-security universe
+deb-src http://apt/ubuntu lucid-security universe
+deb http://apt/ubuntu lucid-security multiverse
+deb-src http://apt/ubuntu lucid-security multiverse
+

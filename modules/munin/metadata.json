@@ -1,0 +1,38 @@
+{
+  "name": "DavidSchmitt-munin",
+  "dependencies": [
+    {
+      "name": "DavidSchmitt-common",
+      "version_requirement": "1.0.0"
+    }
+  ],
+  "author": "",
+  "license": "",
+  "version": "1.0.0",
+  "types": [
+
+  ],
+  "checksums": {
+    "templates/munin-node.conf.Debian.sid": "b49b65f5a2fd68244153048b3467ef1f",
+    "templates/munin-node.conf.Debian.feisty": "7faf563f8c32166aff3c445380ab3f6b",
+    "templates/munin-node.conf.Debian.sarge": "7faf563f8c32166aff3c445380ab3f6b",
+    "templates/munin-node.conf.Debian.squeeze": "a1419b126256cce4af26dd7659e246b3",
+    "templates/munin-node.conf.Debian.etch": "7faf563f8c32166aff3c445380ab3f6b",
+    "templates/site.conf": "394b59620c20da1f0c8c5972cecc9fde",
+    "lib/facter/munin_interfaces.rb": "d7f742cd82c921640425a0d9e1a03db3",
+    "manifests/client.pp": "50d7323cef3bb778feef11552a896fc2",
+    "files/munin-node.lenny": "686c0aa6a0a3eb4e973f162dc77ffe52",
+    "README": "c751657d986833c68c7b7f89186f4067",
+    "lib/facter/acpi_available.rb": "5b1e2b32242252c89fbd4c21db738be6",
+    "files/munin-node.squeeze": "84140736eb804a3953de4e6f7d63d98e",
+    "manifests/host.pp": "3585063bf67333cc2ebcef99080180a4",
+    "files/munin-node.squeeze.1.2.6-17": "84140736eb804a3953de4e6f7d63d98e",
+    "manifests/plugin.pp": "92b1c29fbfa27eee3f170b5f4125f210",
+    "templates/defaultclient.erb": "86f51024c7a62723c61abbf7cdd2653d",
+    "templates/munin-node.conf.Debian.lenny": "b49b65f5a2fd68244153048b3467ef1f",
+    "files/munin-node": "686c0aa6a0a3eb4e973f162dc77ffe52",
+    "manifests/init.pp": "eabfdc31e9b7a6153f4048999c75b9be",
+    "Modulefile": "7f8edeff12c0aeaeb92de57e2ed63d1d"
+  },
+  "source": ""
+}

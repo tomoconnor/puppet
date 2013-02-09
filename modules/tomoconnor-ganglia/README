@@ -1,0 +1,15 @@
+ganglia
+
+This is the ganglia module.
+
+examples:
+
+class {'ganglia::client':
+	cluster => "infrastructure",
+	udp_port => 8650,
+}
+
+For the Metadata server:
+
+include ganglia::server
+
